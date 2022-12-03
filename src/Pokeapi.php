@@ -63,13 +63,7 @@ class Pokeapi extends Connector
 
             $response = $this->send($request);
 
-            if ($asResponse === true) {
-                yield $response;
-            } else {
-                foreach ($response->json('results') as $result) {
-                    yield $result;
-                }
-            }
+            $asResponse ? yield $response : yield from $response->json('results');
 
             $page++;
         } while ($response->json('next') !== null);
