@@ -1,0 +1,45 @@
+{
+    "name": "samcarre/pokeapi-sdk",
+    "description": "Unofficial PHP SDK for Pokeapi",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sammyjo20",
+            "email": "29132017+Sammyjo20@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "sammyjo20/saloon": "v2.x-dev"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "pestphp/pest": "^1.22",
+        "symfony/var-dumper": "^6.2"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Pokeapi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pokeapi\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "fix-code": [
+            "./vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        ],
+        "test": [
+            "./vendor/bin/pest"
+        ]
+    }
+}
