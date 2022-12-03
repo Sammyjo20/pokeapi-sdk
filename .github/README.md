@@ -6,6 +6,14 @@ This is an example PHP SDK built with [Saloon v2](https://sammyjo20/saloon).
 - `Pokeapi\Requests\GetAllPokemon`
 - `Pokeapi\Requests\GetAllItems`
 
+## Installation
+
+Use Composer to install this SDK
+
+```
+composer require sammyjo20/pokeapi-sdk
+```
+
 ## Usage
 
 Simply call the `send` method with the request class you would like to send. Once sent, a `PokeapiResponse` is returned.
