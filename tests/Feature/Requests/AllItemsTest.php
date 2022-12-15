@@ -21,8 +21,8 @@ test('can request an iterator', function () {
 
     $all = [];
 
-    foreach ($iterator as $pokemon) {
-        $all[] = $pokemon;
+    foreach ($iterator as $item) {
+        $all[] = $item;
     }
 
     expect(count($all))->toEqual(1607);

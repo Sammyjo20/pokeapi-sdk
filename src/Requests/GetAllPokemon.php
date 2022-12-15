@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pokeapi\Requests;
 
+use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
 class GetAllPokemon extends Request
@@ -11,9 +12,9 @@ class GetAllPokemon extends Request
     /**
      * HTTP Method
      *
-     * @var string
+     * @var Method
      */
-    protected string $method = 'GET';
+    protected Method $method = Method::GET;
 
     /**
      * Resolve the endpoint
