@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Pokeapi;
 
+use Saloon\Http\Request;
+use Saloon\Http\Response;
 use Saloon\Http\Connector;
-use Saloon\Contracts\Request;
-use Saloon\Contracts\Response;
 use Pokeapi\Responses\PokeapiResponse;
-use Saloon\PaginationPlugin\Paginator;
 use Saloon\PaginationPlugin\OffsetPaginator;
 use Saloon\PaginationPlugin\Contracts\HasPagination;
 

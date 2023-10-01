@@ -1,6 +1,6 @@
 # Pokéapi Saloon SDK
 
-This is an example PHP SDK built with [Saloon v2](https://github.com/saloonphp/saloon).
+This is an example PHP SDK built with [Saloon v3](https://github.com/saloonphp/saloon).
 
 ## Available Requests
 - `Pokeapi\Requests\GetAllPokemon`
