@@ -47,7 +47,7 @@ class Pokeapi extends Connector implements HasPagination
     /**
      * Paginate
      */
-    public function paginate(Request $request): Paginator
+    public function paginate(Request $request): OffsetPaginator
     {
         return new class(connector: $this, request: $request) extends OffsetPaginator {
             /**
