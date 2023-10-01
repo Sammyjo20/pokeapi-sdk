@@ -40,7 +40,7 @@ use Pokeapi\Requests\GetAllPokemon;
 
 $pokeapi = new Pokeapi();
 
-$paginator = $pokeapi->paginator(new GetAllPokemon);
+$paginator = $pokeapi->paginate(new GetAllPokemon);
 
 foreach($paginator->items() as $item) {
     // Handle result
