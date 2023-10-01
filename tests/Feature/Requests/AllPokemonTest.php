@@ -17,13 +17,13 @@ test('can retrieve all pokemon from the api', function () {
 
 test('can request an iterator', function () {
     $pokeapi = new Pokeapi();
-    $iterator = $pokeapi->paginator(new GetAllPokemon);
+    $iterator = $pokeapi->paginate(new GetAllPokemon);
 
     $all = [];
 
-    foreach ($iterator as $pokemon) {
+    foreach ($iterator->items() as $pokemon) {
         $all[] = $pokemon;
     }
 
-    expect(count($all))->toEqual(1154);
+    expect(count($all))->toEqual(1292);
 });

@@ -4,19 +4,22 @@ declare(strict_types=1);
 
 namespace Pokeapi;
 
-use Generator;
 use Saloon\Http\Connector;
 use Saloon\Contracts\Request;
+use Saloon\Contracts\Response;
 use Pokeapi\Responses\PokeapiResponse;
+use Saloon\PaginationPlugin\Paginator;
+use Saloon\PaginationPlugin\OffsetPaginator;
+use Saloon\PaginationPlugin\Contracts\HasPagination;
 
-class Pokeapi extends Connector
+class Pokeapi extends Connector implements HasPagination
 {
     /**
      * Define the custom response
      *
-     * @var string
+     * @var string|null
      */
-    protected string $response = PokeapiResponse::class;
+    protected ?string $response = PokeapiResponse::class;
 
     /**
      * Resolve the base URL of the service.
@@ -42,30 +45,31 @@ class Pokeapi extends Connector
     }
 
     /**
-     * Iterate over a paginated request
-     *
-     * @param \Saloon\Contracts\Request $request
-     * @param bool $asResponse
-     * @return \Generator
-     * @throws \ReflectionException
-     * @throws \Saloon\Exceptions\InvalidResponseClassException
-     * @throws \Saloon\Exceptions\PendingRequestException
+     * Paginate
      */
-    public function paginator(Request $request, bool $asResponse = false): Generator
+    public function paginate(Request $request): Paginator
     {
-        $page = 1;
+        return new class(connector: $this, request: $request) extends OffsetPaginator {
+            /**
+             * Per-page limit
+             */
+            protected ?int $perPageLimit = 100;
 
-        do {
-            $request->query()->merge([
-                'offset' => ($page - 1) * 100,
-                'limit' => 100,
-            ]);
+            /**
+             * @inheritDoc
+             */
+            protected function isLastPage(Response $response): bool
+            {
+                return empty($response->json('next'));
+            }
 
-            $response = $this->send($request);
-
-            $asResponse ? yield $response : yield from $response->json('results');
-
-            $page++;
-        } while ($response->json('next') !== null);
+            /**
+             * @inheritDoc
+             */
+            protected function getPageItems(Response $response, Request $request): array
+            {
+                return $response->json('results');
+            }
+        };
     }
 }

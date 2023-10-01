@@ -1,6 +1,6 @@
 # Pokéapi Saloon SDK
 
-This is an example PHP SDK built with [Saloon v2](https://github.com/sammyjo20/saloon).
+This is an example PHP SDK built with [Saloon v2](https://github.com/saloonphp/saloon).
 
 ## Available Requests
 - `Pokeapi\Requests\GetAllPokemon`
@@ -30,7 +30,7 @@ $response = $pokeapi->send(new GetAllPokemon);
 ```
 
 ## Paginated Results
-You may prefer to retrieve all the results from the paginated requests by using the `paginator` method on the SDK.
+You may prefer to retrieve all the results from the paginated requests by using the `paginate` method on the SDK.
 
 ```php
 <?php
@@ -40,9 +40,9 @@ use Pokeapi\Requests\GetAllPokemon;
 
 $pokeapi = new Pokeapi();
 
-$results = $pokeapi->paginator(new GetAllPokemon);
+$paginator = $pokeapi->paginator(new GetAllPokemon);
 
-foreach($results as $result) {
+foreach($paginator->items() as $item) {
     // Handle result
 }
 ```

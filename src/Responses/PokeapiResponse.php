@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pokeapi\Responses;
 
-use Saloon\Http\Responses\Response;
+use Saloon\Http\Response;
 
 class PokeapiResponse extends Response
 {

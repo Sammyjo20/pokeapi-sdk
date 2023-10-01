@@ -6,8 +6,9 @@ namespace Pokeapi\Requests;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\PaginationPlugin\Contracts\Paginatable;
 
-class GetAllItems extends Request
+class GetAllItems extends Request implements Paginatable
 {
     /**
      * HTTP Method
